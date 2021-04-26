@@ -2,37 +2,37 @@ package com.example.kelonku;
 
 public class HomeKelonku {
 
-    private String judul;
-    private String Jan;
-    private String Feb;
+    String Bulan;
+    String Pengeluaran;
+    String Pemasukan;
 
-    public HomeKelonku(String judul, String jan, String feb) {
-        this.judul = judul;
-        this.Jan = jan;
-        this.Feb = feb;
+    public HomeKelonku(String bulan, String pengeluaran, String pemasukan) {
+        this.Bulan = bulan;
+        this.Pengeluaran = pengeluaran;
+        this.Pemasukan = pemasukan;
     }
 
-    public String getJudul() {
-        return judul;
+    public String getBulan() {
+        return Bulan;
     }
 
-    public void setJudul(String judul) {
-        this.judul = judul;
+    public void setBulan(String judul) {
+        this.Bulan = Bulan;
     }
 
-    public String getJan() {
-        return Jan;
+    public String getPengeluaran() {
+        return Pengeluaran;
     }
 
-    public void setJan(String jan) {
-        Jan = jan;
+    public void setJan(String pengeluaran) {
+        Pengeluaran = pengeluaran;
     }
 
-    public String getFeb() {
-        return Feb;
+    public String getPemasukan() {
+        return Pemasukan;
     }
 
-    public void setFeb(String feb) {
-        Feb = feb;
+    public void setFeb(String pemasukan) {
+        Pemasukan = pemasukan;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.kelonku;
 
+import android.media.AudioTrack;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,44 +11,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myviewholder>{
 
-    private ArrayList<HomeKelonku> listHomeKelonku;
+    ArrayList<HomeKelonku> listHomeKelonku;
 
-    public HomeAdapter(ArrayList<HomeKelonku> listHomeKelonku) {
-        this.listHomeKelonku = listHomeKelonku;
+    public HomeAdapter(ArrayList<HomeKelonku> dataholder) {
+        this.listHomeKelonku = dataholder;
     }
 
     @NonNull
     @Override
-    public HomeAdapter.HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.home_kelonku, parent, false);
-        return new HomeViewHolder(view);
+    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_kelonku,parent,false);
+        return new myviewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeAdapter.HomeViewHolder holder, int position) {
-        holder.tviewJudul.setText(listHomeKelonku.get(position).getJudul());
-        holder.tviewJan.setText(listHomeKelonku.get(position).getJan());
-        holder.tviewFeb.setText(listHomeKelonku.get(position).getFeb());
+    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
+        holder.bulan.setText(listHomeKelonku.get(position).getBulan());
+        holder.pengeluaran.setText(listHomeKelonku.get(position).getPengeluaran());
+        holder.pemasukan.setText(listHomeKelonku.get(position).getPemasukan());
     }
 
     @Override
     public int getItemCount() {
-        return (listHomeKelonku != null) ? listHomeKelonku.size(): 0;
+        return listHomeKelonku.size();
     }
 
-    public class HomeViewHolder extends RecyclerView.ViewHolder{
+    class myviewholder extends RecyclerView.ViewHolder{
 
-        private TextView tviewJudul, tviewJan, tviewFeb;
-        public HomeViewHolder(View view){
+        TextView bulan, pengeluaran, pemasukan;
+        public myviewholder(@NonNull View view) {
             super(view);
-
-            tviewJudul = view.findViewById(R.id.tview_judul);
-            tviewJan = view.findViewById(R.id.tview_jan);
-            tviewFeb = view.findViewById(R.id.tview_feb);
-
+            bulan = view.findViewById(R.id.tview_bulan);
+            pengeluaran = view.findViewById(R.id.tview_keluaran);
+            pemasukan = view.findViewById(R.id.tview_masukan);
         }
     }
 }

@@ -1,53 +1,67 @@
 package com.example.kelonku;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private HomeAdapter homeAdapter;
     private ArrayList<HomeKelonku> homeKelonkuArrayList;
+    private Button btnhome, btnkbusaha, btnhasil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getData();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new FragmentKelonku()).commit();
 
-        recyclerView = findViewById(R.id.recycleview);
-        homeAdapter = new HomeAdapter(homeKelonkuArrayList);
+        //fragment
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+        btnhome = findViewById(R.id.btn_home);
+        btnkbusaha = findViewById(R.id.btn_kbusaha);
+        btnhasil = findViewById(R.id.btn_hasil);
 
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(homeAdapter);
+        btnhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.container, new FragmentKelonku());
+                ft.commit();
+
+            }
+        });
+
+        btnkbusaha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.container, new KebutuhanFragment());
+                ft.commit();
+            }
+        });
+
+        btnhasil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.container, new HasilFragment());
+                ft.commit();
+            }
+        });
 
 
-    }
-
-    public void getData(){
-        homeKelonkuArrayList = new ArrayList<>();
-        homeKelonkuArrayList.add(new HomeKelonku("Coba", "Dulu", "Deh"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobain", "D", "Dah"));
-        homeKelonkuArrayList.add(new HomeKelonku("Coban", "Dlu", "Dih"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobayuk", "ulu", "Doh"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobakuy", "lu", "Dem"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobalah", "Du", "Desd"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobanih", "Dl", "Dehr"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobayuk", "ulu", "Doh"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobakuy", "lu", "Dem"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobalah", "Du", "Desd"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobanih", "Dl", "Dehr"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobayuk", "ulu", "Doh"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobakuy", "lu", "Dem"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobalah", "Du", "Desd"));
-        homeKelonkuArrayList.add(new HomeKelonku("Cobanih", "Dl", "Dehr"));
     }
 }
